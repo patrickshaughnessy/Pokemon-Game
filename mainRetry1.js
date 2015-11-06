@@ -5,6 +5,7 @@
   // var gameBoardPositionsRef = gameRef.child('gameBoardPositions');
   var playersRef = gameRef.child('players');
   var pokemonRef = gameRef.child('pokemon');
+  var cadeRef = gameRef.child('cade');
   var playerRef;
   var playerName = '';
 
@@ -18,7 +19,46 @@
     $('#startGame').click(startGame);
     $('#quitGame').click(quitGame);
 
+    var cade = window.setInterval(function(){
+      generateRareCademon();
+
+    }, 20000);
+
   }
+
+  function generateRareCademon(){
+
+    let cadeLocation = Math.floor(Math.random() * 120);
+    let pokemonName = 'cademon';
+
+    pokemonRef.child(pokemonName).set({
+      name: pokemonName,
+      number: '1000',
+      image: './headshot.jpg',
+      position: cadeLocation
+    });
+
+    let $cadeMessage = $('<h3>').addClass('cadeMessage').text('A rare Cademon has appeared!').css({
+      'display': 'inline',
+      'background-color': '#FE3310',
+      'color': 'white',
+      'position': 'absolute',
+      'right': '0',
+      'bottom': '10%'
+    });
+    $('#titleArea').append($cadeMessage);
+    window.setTimeout(function(){
+      $('.cadeMessage').remove();
+    }, 3000);
+
+  }
+
+  // function removeRareCademon(){
+  //   cadeRef.remove();
+  //   window.setTimeout(function(){
+  //     $('.cadeMessage').remove();
+  //   }, 3000);
+  // }
 
   function quitGame(){
 
@@ -144,7 +184,6 @@
       });
     });
 
-// debugger;
     if (playerName.length){
       let startPosition = Math.floor(Math.random() * 120);
 
@@ -190,6 +229,8 @@
   }
 
   function gameHandler(snapshot){
+
+
     $('#gameArea div.col-xs-1').empty();
     // $('#caughtPokemon').empty();
 
@@ -226,28 +267,38 @@
 
             pokemonRef.child(capturedPokemon).remove();
 
-            $('#' + playerName).append($('<img>').attr('src', capturedPokemonImage));
+            $('#' + playerName).append($('<img>').attr('src', capturedPokemonImage).addClass('captured'));
 
             playerRef.child('capturedPokemon').push({
               capturedPokemon: capturedPokemon,
               capturedPokemonImage: capturedPokemonImage
             });
-
-            // playerRef.once('value', function(player){
-            //   console.log(player.val());
-            //   player.child('capturedPokemon').forEach(function(pokemon){
-            //     let capturedPokemonImage = pokemon.val().capturedPokemonImage;
-            //     $('#caughtPokemon').append($('<img>').attr('src', capturedPokemonImage));
-
-              // });
-            // debugger;
-            // });
-
-
           }
         });
 
       });
+
+        // debugger;
+      // if (snapshot.child('cade').val()){
+      //   cadeRef.once('value', function(cadeSnap){
+      //     // debugger;
+      //     if (cadeSnap.val().position === playerPosition){
+      //
+      //       let capturedCademonName = cadeSnap.val().name;
+      //       let $cademon = $('<img>').addClass('cade').attr('src', './headshot.jpg').css({
+      //         'border-radius': '50%'
+      //       });
+      //       cadeRef.remove();
+      //       // debugger;
+      //
+      //       playerRef.child('capturedPokemon').push({
+      //         capturedPokemon: capturedCademonName,
+      //         capturedPokemonImage: './headshot.jpg'
+      //       });
+      //
+      //     }
+      //   });
+      // }
 
       let $player = $('<p>').text(playerName);
       let $pokeball = $('<img>').attr('src', 'http://orig04.deviantart.net/5341/f/2012/019/f/0/pokeball_icon_by_alphamanxd1-d4mxmi5.png').addClass('pokeball');
@@ -256,8 +307,40 @@
 
       $playerPosition.append($pokeball, $player, $sprite);
 
-
     });
+
+
+    // if (snapshot.child('cade').val()){
+    //
+    //   $('.cade').remove();
+    //   $('.cadeMessage').remove();
+    //
+    //   cadeRef.once('value', function(cadeSnap){
+    //
+    //     // debugger;
+    //
+    //     let $cademon = $('<img>').addClass('cade').attr('src', './headshot.jpg').css({
+    //       'border-radius': '50%'
+    //     });
+    //
+    //     let $cadeMessage = $('<h3>').addClass('cadeMessage').text('A rare Cademon has appeared!').css({
+    //       'display': 'inline',
+    //       'background-color': '#FE3310',
+    //       'color': 'white'
+    //     });
+        // $('#titleArea').append($cadeMessage);
+    //
+    //     let $cadeLocation =  $('#gameArea').find('div.col-xs-1:nth-child(' + cadeSnap.val().position + ')');
+    //
+    //     $cadeLocation.append($cademon);
+
+        // var cadeRemove = window.setTimeout(function(){
+        //   removeRareCademon()
+        // }, 2000);
+
+      // })
+    // }
+
   }
 
 

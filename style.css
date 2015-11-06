@@ -60,10 +60,16 @@
   width: 100%;
   position: absolute;
   bottom: 0;
+  border-radius: 50%;
 }
 
 #caughtPokemon {
   text-align: center;
   border-top: 10px solid gold;
   color: #FE3310;
+}
+
+.captured {
+  border-radius: 50%;
+  height: 100px;
 }
