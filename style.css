@@ -1,0 +1,69 @@
+#mainContainer {
+  /*border-radius: 100%;*/
+  /*background-size: cover;*/
+
+  /*background-color: rgba(0, 0, 0, 0.26);*/
+}
+
+#titleArea {
+  background-image: url('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSlpQvLFGtuiDHOlgz7nX8YeQhAVf1tWxj5EU5TwTH114enaBAW');
+  background-repeat: repeat;
+  text-align: center;
+  /*margin-bottom: 5%;*/
+}
+
+/*#titleArea h4 {
+  background-color: #FCE503;
+}*/
+
+#gameArea {
+  background-image: url('https://alastaira.files.wordpress.com/2012/03/grass.png');
+  opacity: 50%;
+  height: 50vw;
+  width: 100%;
+  border: 1px solid black;
+}
+
+#gameArea .col-xs-1 {
+  /*border: 1px solid black;*/
+  height: 100%;
+}
+
+#gameArea .row {
+  height: 10%;
+}
+
+#gameArea img.pokeball {
+  top: 26%;
+  right: -21%;
+  position: absolute;
+  height: 75%;
+  width: 50%;
+  z-index: 1;
+}
+
+#gameArea p {
+  position: absolute;
+  margin-top: -50%;
+  margin-left: 17%;
+  font-size: 150%;
+  color: #FBE402;
+  border: 3px solid #FBE402;
+  font-weight: 800;
+  padding: 5%;
+  border-radius: 10px;
+
+}
+
+#gameArea img {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+#caughtPokemon {
+  text-align: center;
+  border-top: 10px solid gold;
+  color: #FE3310;
+}
