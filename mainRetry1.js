@@ -150,6 +150,8 @@
 
       playerRef = playersRef.child(playerName);
 
+      playerRef.onDisconnect().remove();
+
       playerRef.set({
         position: startPosition,
         name: playerName,
