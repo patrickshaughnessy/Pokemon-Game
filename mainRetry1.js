@@ -248,7 +248,7 @@
 
       let $player = $('<p>').text(playerName);
       let $pokeball = $('<img>').attr('src', 'http://orig04.deviantart.net/5341/f/2012/019/f/0/pokeball_icon_by_alphamanxd1-d4mxmi5.png').addClass('pokeball');
-      let $sprite = $('<img>').attr('src', './public/ashSpriteAlpha2.png').css('bottom', '0');
+      let $sprite = $('<img>').attr('src', './ashSpriteAlpha2.png').css('bottom', '0');
       let $playerPosition =  $('#gameArea').find('div.col-xs-1:nth-child(' + playerPosition + ')');
 
       $playerPosition.append($pokeball, $player, $sprite);
