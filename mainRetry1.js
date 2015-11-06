@@ -6,7 +6,7 @@
   var playersRef = gameRef.child('players');
   var pokemonRef = gameRef.child('pokemon');
   var playerRef;
-  var playerName;
+  var playerName = '';
 
   $(document).ready(init);
 
@@ -21,9 +21,9 @@
   }
 
   function quitGame(){
-    playerRef.once('value', function(playerSnap){
-      playersRef.child(playerSnap.val().name).remove()
-    });
+
+    playerRef.remove();
+    location.reload();
 
   }
 
@@ -85,7 +85,7 @@
   function moveLeft(){
 
     playerRef.once('value', function(snapshot){
-      let playerPosition = snapshot.val().position - 1;
+      var playerPosition = snapshot.val().position - 1;
       if ((playerPosition + 12) % 12 === 0){
         playerPosition += 12;
       }
@@ -181,6 +181,7 @@
 
               default: return; // exit this handler for other keys
           }
+          console.log(playerName);
           e.preventDefault(); // prevent the default action (scroll / move caret)
         });
 
