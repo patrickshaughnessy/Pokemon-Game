@@ -21,8 +21,38 @@
 
     var cade = window.setInterval(function(){
       generateRareCademon();
-
     }, 20000);
+
+    var samer = window.setInterval(function(){
+      generateRareSamer();
+    }, 30000);
+
+  }
+
+  function generateRareSamer(){
+
+    let samerLocation = Math.floor(Math.random() * 120);
+    let pokemonName = 'samermon';
+
+    pokemonRef.child(pokemonName).set({
+      name: pokemonName,
+      number: '1000',
+      image: './samer.jpeg',
+      position: samerLocation
+    });
+
+    let $samerMessage = $('<h3>').addClass('samerMessage').text('A rare Samermon has appeared!').css({
+      'display': 'inline',
+      'background-color': '#FE3310',
+      'color': 'white',
+      'position': 'absolute',
+      'right': '0',
+      'bottom': '10%'
+    });
+    $('#titleArea').append($cadeMessage);
+    window.setTimeout(function(){
+      $('.samerMessage').remove();
+    }, 3000);
 
   }
 
